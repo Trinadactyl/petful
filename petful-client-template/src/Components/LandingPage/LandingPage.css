@@ -1,0 +1,18 @@
+* {
+  text-align: center;
+}
+
+.siteDesc {
+  text-align: center;
+  font-size: 18px;
+}
+
+#landingPic {
+  max-width: 350px;
+}
+
+#startButton {
+  border-radius: 6px;
+  padding: 10px 50px 10px 50px;
+  font-size: 20px;
+}

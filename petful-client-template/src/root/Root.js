@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import LandingPage from '../Components/LandingPage/LandingPage';
+import Header from '../Components/Header/Header';
+import AdoptionPage from '../Components/AdoptionPage/AdoptionPage';
 
-function Root() {
-  return <div>
-    <h1>Petful</h1>
-  </div>
+export class Root extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <Header />
+        <Route exact path='/' component={LandingPage} />
+        <Route exact path='/AdoptionPage' component={AdoptionPage} />
+      </BrowserRouter>
+    );
+  }
 }
 
-export default Root
+export default Root;
