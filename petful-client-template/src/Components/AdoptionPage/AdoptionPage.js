@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './AdoptionPage.css';
 import config from '../../config';
-import { unstable_batchedUpdates } from 'react-dom';
 
 export default class AdoptionPage extends Component {
   state = {
@@ -56,7 +55,7 @@ export default class AdoptionPage extends Component {
         petChoice = { type: 'dog' };
       }
 
-      thisPage.fetchCalls(petChoice);
+      thisPage.fetchData(petChoice);
 
       thisPage.setState({
         petChoice: !thisPage.state.petChoice
@@ -69,7 +68,7 @@ export default class AdoptionPage extends Component {
     e.target.name.value = '';
   }
 
-  fetchCalls(petChoice) {
+  fetchData(petChoice) {
     fetch(`${config.API_ENDPOINT}/pets`, {
       method: 'DELETE',
       headers: {
@@ -116,7 +115,7 @@ export default class AdoptionPage extends Component {
         },
         body: JSON.stringify(newNames[counter--])
       }).then(() => {
-        thisPage.updatePeople();
+        thisPage.updatePeopleList();
       });
       if (counter === -1) {
         clearInterval(interval);
@@ -124,7 +123,7 @@ export default class AdoptionPage extends Component {
     }, 5000);
   }
 
-  updatePeople = () => {
+  updatePeopleList = () => {
     fetch(`${config.API_ENDPOINT}/people`).then((res) => res.json()).then((data) => {
       console.log(data);
       this.setState({
@@ -133,13 +132,11 @@ export default class AdoptionPage extends Component {
     });
   };
 
-  adoptThePet(e) {
+  adopt(e) {
     e.preventDefault();
-
     let type = { type: e.target.id };
-
-    this.fetchCalls(type);
-    alert('Congratulations! You have adopted a new pet!');
+    this.fetchData(type);
+    alert('Congratulations! You have successfully adopted your new pet!!');
   }
 
   render() {
@@ -175,7 +172,7 @@ export default class AdoptionPage extends Component {
             {this.state.currentUser &&
             this.state.currentUser === people[0] && (
               <form id='dog'>
-                <button id='dog' onClick={(e) => this.adoptThePet(e)}>
+                <button id='dog' onClick={(e) => this.adopt(e)}>
                   Adopt Me!
                 </button>
               </form>
@@ -203,7 +200,7 @@ export default class AdoptionPage extends Component {
             {this.state.currentUser &&
             this.state.currentUser === people[0] && (
               <form id='cat'>
-                <button id='cat' onClick={(e) => this.adoptThePet(e)}>
+                <button id='cat' onClick={(e) => this.adopt(e)}>
                   Adopt Me!
                 </button>
               </form>
