@@ -31,3 +31,7 @@ img {
   border: thin solid grey;
   border-radius: 6px;
 }
+
+.other-pets {
+  border: solid black
+}

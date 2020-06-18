@@ -6,6 +6,8 @@ export default class AdoptionPage extends Component {
   state = {
     dog: {},
     cat: {},
+    otherCats: [],
+    otherDogs: [],
     people: [],
     currentUser: null,
     petChoice: true
@@ -13,9 +15,12 @@ export default class AdoptionPage extends Component {
 
   componentDidMount() {
     fetch(`${config.API_ENDPOINT}/pets`).then((res) => res.json()).then((data) => {
+      console.log('data:', data)
       this.setState({
         dog: data.nextDog,
-        cat: data.nextCat
+        cat: data.nextCat,
+        otherCats: data.allCats.slice(2,4),
+        otherDogs: data.allDogs.slice(2,4)
       });
     });
     fetch(`${config.API_ENDPOINT}/people`).then((res) => res.json()).then((data) => {
@@ -140,10 +145,11 @@ export default class AdoptionPage extends Component {
   }
 
   render() {
-    const people = this.state.people;
-    const dog = this.state.dog;
-    const cat = this.state.cat;
-    if (people[0] === this.state.currentUser && people.length === 1) {
+    const { dog, cat, people, otherCats, otherDogs, currentUser } = this.state
+    // const people = this.state.people;
+    // const dog = this.state.dog;
+    // const cat = this.state.cat;
+    if (people[0] === currentUser && people.length === 1) {
       this.nextInLine();
     }
     return (
@@ -197,6 +203,16 @@ export default class AdoptionPage extends Component {
               <br />
               <li>Story: {cat.story}</li>
             </ul>
+
+            <div className='other-pets'>
+              <ul>
+                {otherCats.map((cat, i) => 
+                  <li key={i}>{cat.name}</li>)}
+                {otherDogs.map((dog, i) => 
+                  <li key={i}>{dog.name}</li>)}
+              </ul>
+            </div>
+
             {this.state.currentUser &&
             this.state.currentUser === people[0] && (
               <form id='cat'>
@@ -210,7 +226,7 @@ export default class AdoptionPage extends Component {
         <section className='adoptionQ'>
           <h3>In love yet? Join the queue below...</h3>
           <label>Adoption Queue</label>
-          <ol>{people.map((person) => <li>{person}</li>)}</ol>
+          <ol>{people.map((person, i) => <li key={i}>{person}</li>)}</ol>
           <form onSubmit={(e) => this.onJoinQueue(e)}>
             <label>Name:</label>
             <input type='text' name='name' />

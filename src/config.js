@@ -1,5 +1,5 @@
 export default {
-  API_ENDPOINT: process.env.REACT_APP_API_URL
+  API_ENDPOINT: 'http://localhost:8000'
 };
 
 //process.env.REACT_APP_API_URL
