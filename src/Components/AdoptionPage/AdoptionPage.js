@@ -207,9 +207,15 @@ export default class AdoptionPage extends Component {
             <div className='other-pets'>
               <ul>
                 {otherCats.map((cat, i) => 
-                  <li key={i}>{cat.name}</li>)}
+                  <li key={i} className='other-pet'>
+                    <img src={cat.imageURL} alt='a cute doggie' />
+                    {cat.name} / {cat.gender} / {cat.breed} / {cat.age}
+                  </li>)}
                 {otherDogs.map((dog, i) => 
-                  <li key={i}>{dog.name}</li>)}
+                  <li key={i} className='other-pet'>
+                    <img src={dog.imageURL} alt='a cute kitty' />
+                    {dog.name} / {dog.gender} / {dog.breed} / {dog.age}
+                  </li>)}
               </ul>
             </div>
 
