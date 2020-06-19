@@ -12,30 +12,43 @@ ol {
 }
 
 img {
-  max-width: 200px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  padding-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pets-container {
+  width: auto;
 }
 
 .dogBox {
+  display: inline-block;
   border: thin solid grey;
+  width: auto;
   border-radius: 6px;
-  margin-bottom: 12px;
+  padding: 5%;
+  margin: 12px;
 }
 
 .catBox {
+  display: inline-block;
   border: thin solid grey;
+  width: auto;
   border-radius: 6px;
-  margin-bottom: 12px;
-}
-
-.adoption {
-  border: thin solid grey;
-  border-radius: 6px;
+  padding: 5%;
+  margin: 12px;
 }
 
 .other-pets {
-  border: solid black
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-left: 0;
 }
 
 .other-pet {
-  border: solid black;
+  padding: 5px;
 }

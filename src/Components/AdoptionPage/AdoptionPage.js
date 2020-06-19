@@ -146,33 +146,25 @@ export default class AdoptionPage extends Component {
 
   render() {
     const { dog, cat, people, otherCats, otherDogs, currentUser } = this.state
-    // const people = this.state.people;
-    // const dog = this.state.dog;
-    // const cat = this.state.cat;
+
     if (people[0] === currentUser && people.length === 1) {
       this.nextInLine();
     }
     return (
-      <div className='adoption'>
+      <main className='main'>
         <h1>Adopt a Pet</h1>
         <div className='pets-container'>
           <div className='dogBox'>
             <h2>Next Dog Up!</h2>
             <img src={dog.imageURL} alt={dog.description} />
             <li className='imageDesc'>
-              <br />
               <em>"{dog.description}"</em>
             </li>
             <ul>
-              <br />
               <li>Name: {dog.name}</li>
-              <br />
               <li>Gender: {dog.gender}</li>
-              <br />
               <li>Age: {dog.age} years old</li>
-              <br />
               <li>Breed: {dog.breed}</li>
-              <br />
               <li>Story: {dog.story}</li>
             </ul>
             {this.state.currentUser &&
@@ -188,24 +180,28 @@ export default class AdoptionPage extends Component {
             <h2>Next Cat Up!</h2>
             <img src={cat.imageURL} alt={cat.description} />
             <li className='imageDesc'>
-              <br />
               <em>"{cat.description}"</em>
             </li>
             <ul>
-              <br />
               <li>Name: {cat.name}</li>
-              <br />
               <li>Gender: {cat.gender}</li>
-              <br />
               <li>Age: {cat.age} years old</li>
-              <br />
               <li>Breed: {cat.breed}</li>
-              <br />
               <li>Story: {cat.story}</li>
             </ul>
 
-            <div className='other-pets'>
-              <ul>
+            {this.state.currentUser &&
+            this.state.currentUser === people[0] && (
+              <form id='cat'>
+                <button id='cat' onClick={(e) => this.adopt(e)}>
+                  Adopt Me!
+                </button>
+              </form>
+            )}
+          </div>
+
+          <div className='other-pets-container'>
+              <ul className='other-pets'>
                 {otherCats.map((cat, i) => 
                   <li key={i} className='other-pet'>
                     <img src={cat.imageURL} alt='a cute doggie' />
@@ -219,17 +215,8 @@ export default class AdoptionPage extends Component {
               </ul>
             </div>
 
-            {this.state.currentUser &&
-            this.state.currentUser === people[0] && (
-              <form id='cat'>
-                <button id='cat' onClick={(e) => this.adopt(e)}>
-                  Adopt Me!
-                </button>
-              </form>
-            )}
-          </div>
         </div>
-        <section className='adoptionQ'>
+        <section className='people'>
           <h3>In love yet? Join the queue below...</h3>
           <label>Adoption Queue</label>
           <ol>{people.map((person, i) => <li key={i}>{person}</li>)}</ol>
@@ -239,7 +226,7 @@ export default class AdoptionPage extends Component {
             <button>Join Queue</button>
           </form>
         </section>
-      </div>
+      </main>
     );
   }
 }
