@@ -9,7 +9,7 @@ Technology Utilized: React, Node, Express
 
 Live App: https://dsa-petful-client-i20zse0su.now.sh
 
-Client Repo: git@github.com:Trinadactyl/petful.git
+Client Repo: https://github.com/Trinadactyl/petful
 
 Server Repo: https://github.com/Trinadactyl/petful-api
 
