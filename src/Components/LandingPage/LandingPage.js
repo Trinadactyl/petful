@@ -7,7 +7,7 @@ export default class LandingPage extends Component {
   render() {
     return (
       <div>
-        <img id='landingPic' src={landingPic} alt='a cute image of a kitten and a puppy.' />
+        <img id='landingPic' src={landingPic} alt='a kitten and a puppy.' />
         <p className='siteDesc'>
           Welcome to Petful, an online pet adoption service for dogs and cats. Our adoption policy works on a strictly
           "first in, first out" basis where you may adopt either a dog, a cat, or both, with the only stipulation being
